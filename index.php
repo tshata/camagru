@@ -1,3 +1,21 @@
+<?php
+
+$servername = "localhost";
+$username = "root";
+$password = "Lw7en3xBSylH3KN1";
+
+//create connection
+
+$connection = new mysqli($servername, $username, $password);
+
+//check connection
+
+if ($connection->connect_error)
+{
+  die("Connection failed: " .$connection->connect_error);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,17 +56,41 @@
         <form>
           <div class="six columns">
           <label>Email</label>
-          <input class="u-full-width" type="email" name="email">
+          <input class="u-full-width" type="text" value="email">
         </div>
         
            <div class="six columns">
           <label >Password</label>
-          <input class="u-full-width" type="email" name="email">
+          <input class="u-full-width" type="password">
         </div>
         
 
           <input class="u-full-width" type="submit" value="Sign In">
         </form>
+
+        <?php
+session_start();
+
+              $Name=$_POST['email'];
+              $password=$_POST['password'];
+
+              $result=mysql_query("SELECT count(*) FROM User WHERE email='email' and password='password' ");
+
+              $count=mysql_fetch_array($result);
+
+              if(count==0)
+              {
+                session_register("email");
+                session_register("password");
+              //  header("location:success.php");
+              }
+              else
+              {
+                Wrong username or password Return to <a href="index.php">login</a>; 
+              }
+              
+          }
+        ?>
       </div>
       <div class="row">
         <div class="twelve columns">
@@ -59,7 +101,7 @@
      <div class="row">
      <div style="margin-top: 5%">
         <h4>Sign Up</h4>
-        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
           <div class="six columns">
           <label>Full Name</label>
           <input class="u-full-width" type="text" name="Name">
