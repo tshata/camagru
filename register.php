@@ -32,7 +32,7 @@
   <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <div class="container">
-     <div class="row">
+    <div class="row">
       <div style="margin-top: 15%">
       </div>
       <div class="row">
@@ -42,41 +42,42 @@
         <!--  <img class="twelve columns" src="images/logo.png">  -->
         </div>
       </div>
-    <div class="row">
-      <div style="margin-top: 5%">
-        <h4 style="text-align:center">Sign In</h4>
-        <form>
-        <div class="six columns">
-          <label style="text-align: center;">Email</label>
-          <input class="u-full-width" type="text">
-        </div>
+     <div class="row">
+     <div style="margin-top: 5%">
+        <h4 style="text-align: center">Sign Up</h4>
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+          <div class="six columns">
+          <label style="text-align:center">Name</label>
+          <input class="u-full-width" type="text" name="Name">
+          </div>
 
-         <div class="six columns">
-          <label style="text-align: center;">Password</label>
-          <input class="u-full-width" type="password">
-        </div>
-    
-          <input class="u-full-width" type="submit" value="Sign In">
+          <div class="six columns">
+          <label style="text-align:center">Email</label>
+          <input class="u-full-width" type="email" name="email">
+          </div>
 
           <div class="row">
-            <div class="six columns">
-             <a href="./register.php"> <p style="text-align: center;">Create Account</p></a>
-            </div>
-            <div class="six columns">
-             <a href="./register.php"> <p style="text-align: center;">Forgot Password</p></a>
+          <div class="six columns">
+          <label style="text-align: center;"> Password</label>
+          <input class="u-full-width" type="password" name="">
           </div>
-        </div>
-        </form>
-
-      </div>
-           
+          
+          <div class="six columns">
+          <label style="text-align:center">Confirm Password</label>
+          <input class="u-full-width" type="password" name="">
+          </div>
+          </div>
+        
+          
+          <input  class="u-full-width" type="submit" value="Sign Up">
+      
       </div>
         </form>
       </div>
     </div>
         </div>
   </div>
-<footer></footer>
+<footer style="position: fixed; bottom: 0; "></footer>
 <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 </body>
