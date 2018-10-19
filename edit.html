@@ -1,6 +1,84 @@
 <!DOCTYPE html>
 <html>
+<head>
 <title>Camagru</title>
+
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="images/favicon.png">
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+<style>
+body,h1 {font-family: "Raleway", Arial, sans-serif}
+h1 {letter-spacing: 6px}
+
+.w3-row-padding img 
+{margin-bottom: 12px}
+
+#container {
+    margin: 0px auto;
+    width: 100%;
+}
+#videoElement {
+    width: 100%;
+   background-color: #777;
+}
+.edit {
+  height: 100%;
+}
+</style>
+
+
+<body>
+</head>
+<!-- !PAGE CONTENT! -->
+<div class="w3-content" style="max-width:1500px">
+
+<!-- Header -->
+<header class="w3-panel w3-center w3-opacity" style="padding:16px">
+  <h1 class="w3-xlarge">Camagru</h1>
+  <div >
+    <div>
+      <a href="./home.html" class="w3-bar-item w3-button">Home</a>
+      <a href="./index.php" class="w3-bar-item w3-button ">Sign In</a>
+      <a href="./register.php" class="w3-bar-item w3-button">Sign Up</a>
+      <a href="./edit.html" class="w3-bar-item w3-button w3-light-grey">Edit</a>
+
+    </div>
+  </div>
+</header>
+
+<!-- Photo Grid -->
+<div class="container">
+<div class="w3-row-padding w3-grayscale nine columns" style="margin-bottom:128px">
+  <video autoplay="true" id="videoElement">
+    
+  </video>
+  <div>
+    <a id="snap"href="" class="w3-bar-item w3-button w3-light-grey">Take_Picture</a>
+  </div>
+  </div>
+  <div class="row">
+  <div class="w3-row-padding three columns edit">
+    
+  </div>
+</div>
+ </div> 
+
+<!-- End Page Content -->
+</div>
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-light-grey w3-center w3-large"> 
+  
+</footer>
+
+</body>
 <script type="text/javascript">
   var video = document.querySelector("#videoElement");
  
@@ -13,55 +91,36 @@ if (navigator.mediaDevices.getUserMedia) {
     console.log("Something went wrong!");
   });
 }
-</script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" type="image/png" href="images/favicon.png">
+function takeSnapshot(){
 
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-body,h1 {font-family: "Raleway", Arial, sans-serif}
-h1 {letter-spacing: 6px}
-.w3-row-padding img {margin-bottom: 12px}
-#videoElement {
-    width: 500px;
-    height: 375px;
-    background-color: #777;
+    var hidden_canvas = document.querySelector('canvas'),
+        video = document.querySelector('video.stream'),
+        image = document.querySelector('img.photo'),
+
+        // Get the exact size of the video element.
+        width = video.videoWidth,
+        height = video.videoHeight,
+
+        // Context object for working with the canvas.
+        context = hidden_canvas.getContext('2d');
+
+    // Set the canvas to the same dimensions as the video.
+    hidden_canvas.width = width;
+    hidden_canvas.height = height;
+
+    // Draw a copy of the current frame from the video on the canvas.
+    context.drawImage(video, 0, 0, width, height);
+
+    // Get an image dataURL from the canvas.
+    var imageDataURL = hidden_canvas.toDataURL('image/png');
+
+    // Set the dataURL as source of an image element, showing the captured photo.
+    image.setAttribute('src', imageDataURL); 
+
+    // Set the href attribute of the download button.
+    document.querySelector('#snap').href = imageDataURL;
+
 }
-</style>
-<body>
 
-<!-- !PAGE CONTENT! -->
-<div class="w3-content" style="max-width:1500px">
-
-<!-- Header -->
-<header class="w3-panel w3-center w3-opacity" style="padding:16px">
-  <h1 class="w3-xlarge">Camagru</h1>
-  <div >
-    <div ">
-      <a href="./home.html" class="w3-bar-item w3-button">Home</a>
-      <a href="./index.php" class="w3-bar-item w3-button w3-light-grey">Sign In</a>
-      <a href="./register.php" class="w3-bar-item w3-button">Sign Up</a>
-
-    </div>
-  </div>
-</header>
-
-<!-- Photo Grid -->
-<div class="w3-row-padding w3-grayscale" style="margin-bottom:128px">
-  <video autoplay="true" id="videoElement"></video>
-  </div>
-</div>
-  
-<!-- End Page Content -->
-</div>
-
-<!-- Footer -->
-<footer class="w3-container w3-padding-64 w3-light-grey w3-center w3-large"> 
-  
-</footer>
-
-</body>
+</script>
 </html>
